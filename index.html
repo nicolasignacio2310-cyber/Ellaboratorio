@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Alguien Especial ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Contenedor principal */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            z-index: 10;
+            max-width: 300px;
+        }
+
+        h1 { color: #d63384; font-size: 1.5rem; }
+        p { color: #444; font-style: italic; }
+
+        /* Botón de música */
+        .btn-musica {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* Lluvia de corazones */
+        .corazon-lluvia {
+            position: absolute;
+            top: -10%;
+            color: #ff4d6d;
+            font-size: 20px;
+            user-select: none;
+            z-index: 1;
+            animation: caer linear forwards;
+        }
+
+        @keyframes caer {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div style="font-size: 40px;">💝</div>
+        <h1>Tengo algo para ti</h1>
+        <p>"Mi pame muchas gracias por este findesemana, por muchos momentos mas asi 💝 Te quiero mucho , contare los dias para verte corazon ."</p>
+        
+        <button class="btn-musica" onclick="playMusic()">🎵 ahi te va chiquitita</button>
+        <audio id="miMusica" loop>
+            <source src="seria-un-error.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        // Función para la música
+        function playMusic() {
+            var audio = document.getElementById("miMusica");
+            audio.play();
+        }
+
+        // Función para crear la lluvia de corazones
+        function crearCorazon() {
+            const corazon = document.createElement('div');
+            corazon.classList.add('corazon-lluvia');
+            corazon.innerHTML = '❤️';
+            corazon.style.left = Math.random() * 100 + 'vw';
+            corazon.style.animationDuration = Math.random() * 3 + 2 + 's';
+            corazon.style.opacity = Math.random();
+            corazon.style.fontSize = Math.random() * 20 + 10 + 'px';
+            
+            document.body.appendChild(corazon);
+
+            setTimeout(() => {
+                corazon.remove();
+            }, 5000);
+        }
+
+        // Generar corazones cada 300ms
+        setInterval(crearCorazon, 300);
+    </script>
+</body>
+</html>
